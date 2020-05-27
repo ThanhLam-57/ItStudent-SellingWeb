@@ -1,6 +1,8 @@
 package com.bksoftware;
 
 import com.bksoftware.controller.ProductController;
+import com.bksoftware.model.Product;
+import com.bksoftware.service_impl.ProductServiceImpl;
 
 public class Main {
 
@@ -22,5 +24,7 @@ public class Main {
                 "                                                                  `----'      `----'                            \n" +
                 "                                                                                                                ");
         new ProductController().start();
+     //   new ProductServiceImpl().update(new Product(0, "Iphone 12", "Bphone", 1, 1000));
+
     }
 }

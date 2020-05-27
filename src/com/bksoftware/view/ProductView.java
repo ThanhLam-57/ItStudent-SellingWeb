@@ -3,6 +3,7 @@ package com.bksoftware.view;
 import com.bksoftware.model.Product;
 
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class ProductView {
@@ -57,6 +58,22 @@ public class ProductView {
         System.out.println("Nhập giá bán: ");
         product.setGiaBan(Double.parseDouble(scanner.nextLine()));
         return product;
+    }
+
+    public void fixSuccess(){
+        System.out.println("Chỉnh sửa thành công");
+    }
+
+    public void fixFail(){
+        System.out.println("Chỉnh sửa thất bại");
+    }
+
+    public Product getProductToFix(){
+        System.out.println("Nhập ID: ");
+        int id = new Scanner(System.in).nextInt();
+        Product p = getProduct();
+        p.setId(id);
+        return p;
     }
 
     public int getChoice() {

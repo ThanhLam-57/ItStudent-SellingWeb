@@ -4,8 +4,11 @@ import com.bksoftware.model.Product;
 import com.bksoftware.service.ProductService;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -60,7 +63,43 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Product product) {
-        return null;
+        List<Product> products = findAllProduct();
+       // Product needToFix = products.stream().filter(p -> p.getId() == product.getId()).collect(Collectors.toList()).get(0);
+        Product fix = null;
+        for (Product p : products){
+            if (p.getId() == product.getId())
+                fix = p;
+        }
+        if (fix == null)
+            return null;
+        fix.setTen(product.getTen());
+        fix.setNsx(product.getNsx());
+        fix.setGiaNhap(product.getGiaNhap());
+        fix.setGiaBan(product.getGiaBan());
+
+        try {
+            writer = new BufferedWriter(new FileWriter("product.txt"));
+             products.forEach(p -> {
+                 try {
+                     writer.write(p.toData() + "\n");
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
+             });
+            return product;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     @Override

@@ -61,7 +61,16 @@ public class ProductController {
         start();
     }
 
-    private void updateProductEvent(){};
+    private void updateProductEvent(){
+      Product p = view.getProductToFix();
+      Product fixed = productService.update(p);
+      if (fixed != null){
+          view.fixSuccess();
+      }else {
+          view.fixFail();
+      }
+      showAllProductEvent();
+    }
 
     private void deleteProductEvent(){};
 }
