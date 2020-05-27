@@ -1,0 +1,2 @@
+0|Iphone 11 S Pro plus |Apple|10.0|100.0
+1|Macbook expert 18|Apple|200.0|2000.0
